@@ -1,0 +1,6 @@
+# GitHub 에 올리지 않을 파일
+.venv/
+__pycache__/
+water_demo.db
+water_demo.db-wal
+water_demo.db-shm
