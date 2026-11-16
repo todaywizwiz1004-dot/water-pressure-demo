@@ -1,0 +1,9 @@
+# Streamlit 설정
+[server]
+headless = true          # 처음 실행할 때 이메일 입력 질문을 건너뜀 (브라우저는 직접 열거나 run.bat 이 열어 줌)
+
+[browser]
+gatherUsageStats = false # 사용 통계 전송 안 함
+
+[theme]
+primaryColor = "#1F6FB2"
