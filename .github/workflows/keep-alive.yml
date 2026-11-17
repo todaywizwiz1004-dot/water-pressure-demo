@@ -1,0 +1,31 @@
+name: Keep Streamlit app alive
+
+on:
+  schedule:
+    # 6시간마다 (UTC). Streamlit 은 12시간 동안 접속이 없으면 앱을 재운다.
+    - cron: "17 */6 * * *"
+  workflow_dispatch: # Actions 탭에서 수동 실행 가능
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+
+      - name: Visit the app
+        env:
+          APP_URL: https://water-pressure-demo.streamlit.app/
+        run: python .github/scripts/keep_alive.py
